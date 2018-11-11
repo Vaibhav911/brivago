@@ -1,0 +1,23 @@
+class City
+{
+	String landmark;
+    class Hotel
+	{
+		boolean wifi,taxi,parking,restaurant,gym,swimmingPool;
+		unsigned float rating;
+	    class Room
+		{
+			boolean ac,tv,toiletries,compBreakfast;
+			double price;	
+		}	
+		class SingleRoom extends Room
+		{
+			unsigned int numberOfRooms;
+		}
+		class DoubleRoom extends Room
+		{
+			unsigned int numberOfRooms;
+			unsigned double discount;
+		}
+	}
+}
