@@ -3,7 +3,7 @@ import java.awt.*;
 import javax.swing.*;
 class WelcomePage
 {
-	public static void main(String[] args) throws IOException
+	gui() throws IOException
 	{
 		JFrame frame = new JFrame("Brivago-Welcome");//setting background image
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
