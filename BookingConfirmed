@@ -1,0 +1,78 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.imageio.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+class BookingConfirmed
+{
+	JPanel jp;
+	JLabel jl1,jl2,ref_number;
+	JTextField aadhar;
+	JButton back_button;
+	public static void main(String args[]) throws IOException
+	{
+		BookingConfirmed basetemplate = new BookingConfirmed();
+		basetemplate.gui();
+	}
+	public void gui() throws IOException
+	{
+		JFrame frame = new JFrame("Booking Confirmed");//setting background image
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setSize(1920,1080);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.setContentPane(new JLabel(new ImageIcon("beach.jpg")));
+		frame.setLayout(null);
+
+		ImageIcon brivagoicon = new ImageIcon("brivagoicon.jpg");//settin app icon
+		frame.setIconImage(brivagoicon.getImage());
+	
+		JButton profile = new JButton("profile");//profile button setup
+		profile.setBounds(1200,10,77,30);
+		frame.getContentPane().add(profile);
+
+		JButton logout = new JButton();//logout button setup
+		logout.setBounds(1296, 10, 30,30);
+		frame.getContentPane().add(logout);
+		ImageIcon image = new ImageIcon("power.jpg");
+		logout.setIcon(image);
+
+		JButton mybook = new JButton("My Bookings");//mybooking button setup
+		mybook.setBounds(1072,10, 108, 30);
+		frame.getContentPane().add(mybook);
+		/**/
+		jl1=new JLabel("Your Booking has been Confirmed.");
+		jl1.setForeground(Color.GREEN);
+		jl2=new JLabel("Your Booking Refrence Number is");
+		ref_number=new JLabel("800");
+		
+		Font label_font=new Font("Calibri",Font.ITALIC+Font.BOLD,40);
+		jl1.setFont(new Font("Calibri",Font.ITALIC+Font.BOLD,40));
+		jl2.setFont(new Font("Calibri",Font.ITALIC+Font.BOLD,32));
+		ref_number.setFont(new Font("Serif",Font.BOLD, 32));
+		ref_number.setForeground(Color.BLUE);
+		
+		jl1.setBounds(320,120,600,40);
+		jl2.setBounds(320,300,500,32);
+		ref_number.setBounds(820,296,100,32);
+		frame.getContentPane().add(jl1);
+		frame.getContentPane().add(jl2);
+		frame.getContentPane().add(ref_number);
+		
+		back_button=new JButton("Back");                         //Back Button
+		back_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				//jl.setText("Button One Pressed");
+			}
+		});
+		back_button.setBounds(0,0,80,32);
+		frame.getContentPane().add(back_button);
+		
+		/**/
+		frame.revalidate();
+		frame.repaint();
+	}
+}
+
+
