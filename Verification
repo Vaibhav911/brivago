@@ -1,0 +1,89 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.imageio.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+class Verification
+{
+	JPanel jp;
+	JLabel jl1,jl2,price;
+	JTextField aadhar;
+	JButton finalise_button,back_button;
+	public static void main(String args[]) throws IOException
+	{
+		Verification basetemplate = new Verification();
+		basetemplate.gui();
+	}
+	public void gui() throws IOException
+	{
+		JFrame frame = new JFrame("Verification");//setting background image
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setSize(1920,1080);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.setContentPane(new JLabel(new ImageIcon("beach.jpg")));
+		frame.setLayout(null);
+
+		ImageIcon brivagoicon = new ImageIcon("brivagoicon.jpg");//settin app icon
+		frame.setIconImage(brivagoicon.getImage());
+	
+		JButton profile = new JButton("profile");//profile button setup
+		profile.setBounds(1200,10,77,30);
+		frame.getContentPane().add(profile);
+
+		JButton logout = new JButton();//logout button setup
+		logout.setBounds(1296, 10, 30,30);
+		frame.getContentPane().add(logout);
+		ImageIcon image = new ImageIcon("power.jpg");
+		logout.setIcon(image);
+
+		JButton mybook = new JButton("My Bookings");//mybooking button setup
+		mybook.setBounds(1072,10, 108, 30);
+		frame.getContentPane().add(mybook);
+		/**/
+		jl1=new JLabel("Total Price --");
+		jl2=new JLabel("Enter PAN /Aadhar Number  --");
+		price=new JLabel("800");
+		
+		Font label_font=new Font("Calibri",Font.ITALIC+Font.BOLD,24);
+		jl1.setFont(label_font);
+		jl2.setFont(label_font);
+		price.setFont(new Font("Serif",Font.BOLD, 24));
+		price.setForeground(Color.BLUE);
+		aadhar=new JTextField(100);
+		
+		jl1.setBounds(200,120,320,32);
+		jl2.setBounds(200,220,320,32);
+		price.setBounds(520,120,100,32);
+		aadhar.setBounds(520,220,240,32);
+		frame.getContentPane().add(jl1);
+		frame.getContentPane().add(jl2);
+		frame.getContentPane().add(price);
+		frame.getContentPane().add(aadhar);
+		
+		finalise_button=new JButton("Finalise");
+		finalise_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				//jl.setText("Button One Pressed");
+			}
+		});
+		finalise_button.setBounds(360,320,160,32);
+		frame.getContentPane().add(finalise_button);
+		
+		back_button=new JButton("Back");                         //Back Button
+		back_button.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				//jl.setText("Button One Pressed");
+			}
+		});
+		back_button.setBounds(0,0,80,32);
+		frame.getContentPane().add(back_button);
+		
+		/**/
+		frame.revalidate();
+		frame.repaint();
+	}
+}
+
+
