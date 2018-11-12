@@ -1,3 +1,4 @@
+package brivago;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -28,18 +29,26 @@ class BookingConfirmation
 		ImageIcon brivagoicon = new ImageIcon("brivagoicon.jpg");//settin app icon
 		frame.setIconImage(brivagoicon.getImage());
 	
-		JButton profile = new JButton("profile");//profile button setup
-		profile.setBounds(1200,10,77,30);
+		JButton home = new JButton("Home");//profile button setup
+		home.addActionListener(new HomeListener());
+		home.setBounds(10,10,80,32);
+		frame.getContentPane().add(home);		
+		
+		JButton profile = new JButton("Profile");//profile button setup
+		profile.setBounds(1405,10,77,30);
+		profile.addActionListener(new ProfileListener());
 		frame.getContentPane().add(profile);
 
 		JButton logout = new JButton();//logout button setup
-		logout.setBounds(1296, 10, 30,30);
+		logout.setBounds(1495, 10, 30,30);
+		logout.addActionListener(new LogoutListener());
 		frame.getContentPane().add(logout);
 		ImageIcon image = new ImageIcon("power.jpg");
 		logout.setIcon(image);
 
 		JButton mybook = new JButton("My Bookings");//mybooking button setup
-		mybook.setBounds(1072,10, 108, 30);
+		mybook.setBounds(1285,10, 108, 30);
+		mybook.addActionListener(new BookingListener());
 		frame.getContentPane().add(mybook);
 		/**/
 		
@@ -89,7 +98,9 @@ class BookingConfirmation
 		jp.add(jl6);	jp.add(AC);
 		jp.add(jl7);	jp.add(price);
 		
-		jp.setOpaque(false);
+		  jp.setBackground(new Color(0,60,0,60));
+		//jp.setOpaque(false);
+	
 		jp.setBorder(BorderFactory.createLineBorder(Color.BLACK,4));
 		jp.setBounds(200,100,520,400);
 		frame.getContentPane().add(jp);
@@ -102,19 +113,9 @@ class BookingConfirmation
 		});
 		book_button.setBounds(360,540,160,32);
 		frame.getContentPane().add(book_button);
-		
-		back_button=new JButton("Back");                         //Back Button
-		back_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				//jl.setText("Button One Pressed");
-			}
-		});
-		back_button.setBounds(0,0,80,32);
-		frame.getContentPane().add(back_button);
-		
+
 		/**/
 		frame.revalidate();
 		frame.repaint();
 	}
 }
-
