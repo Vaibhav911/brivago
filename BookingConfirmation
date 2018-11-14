@@ -11,6 +11,7 @@ class BookingConfirmation
 	JLabel jl1,jl2,jl3,jl4,jl5,jl6,jl7;
 	JLabel hotel_location,check_in_date,num_of_single_rooms,num_of_double_rooms,num_of_guests,AC,price;
 	JButton book_button,back_button;
+	
 	public static void main(String args[]) throws IOException
 	{
 		BookingConfirmation basetemplate = new BookingConfirmation();
