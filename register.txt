@@ -1,0 +1,33 @@
+register.addActionListener(new ActionListener()
+				{
+			       public void actionPerformed(ActionEvent ae)
+			       {
+			    	   String s1 = name.getText();
+			    	   String s2 =dateOfBirth.getText();
+			    	   String s3 = emailId.getText();
+			    	   String s4 = userName.getText();
+			    	   char[] s5 = confirmPassword.getPassword();
+				   	   char[] s6 = password.getPassword();
+				   		  int k=0;
+				   		 if(s5.length!=s6.length) {
+				              System.out.print("ha");k=1;}
+				   		 else 
+				   		 {
+				   			 for(int i=0;i<s1.length;i++)
+				   				if(s5[i]!=s6[i]) {
+				   					 k=1;break;
+				   				}
+				   		}
+			    	 
+				   		 if(k==0)
+				   		 {
+				   		 }
+				   		 else
+				   		 {
+				   			JLabel l = new JLabel("re-enter password");
+				   			l.setBounds(600,600,150,50);
+				   			frame.add(l);
+				   		 }
+			    	
+			       }
+			  });
