@@ -1,0 +1,21 @@
+login.addActionListener(new ActionListener()
+		{
+	       public void actionPerformed(ActionEvent ae)
+	       {
+	    	  
+              String s1 = userName.getText();
+              char[] s2 = password.getPassword();
+              
+              if(false) 
+              {
+            	  JLabel ha = new JLabel("Re-enter username/password");
+            	  ha.setBounds(700,580,100,50);
+            	  frame.add(ha);
+              }
+              else
+              {
+            	  HotelSearch hs =new HotelSearch();
+            	  hs.gui();
+              }
+	    	}
+     });
