@@ -19,7 +19,7 @@ class BookingConfirmed
 	}
 	public void gui() throws IOException
 	{
-		JFrame frame = new JFrame("Booking Confirmed");//setting background image
+		JFrame frame= new JFrame("Booking Confirmed");//setting background image
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setSize(1920,1080);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,7 +27,7 @@ class BookingConfirmed
 		frame.setContentPane(new JLabel(new ImageIcon("beach.jpg")));
 		frame.setLayout(null);
 
-		ImageIcon brivagoicon = new ImageIcon("brivagoicon.jpg");//settin app icon
+		ImageIcon brivagoicon = new ImageIcon("brivagoicon.jpg");//setting app icon
 		frame.setIconImage(brivagoicon.getImage());
 	
 		JButton profile = new JButton("Profile");//profile button setup
