@@ -64,22 +64,6 @@ class Login
 		advertisement.setBounds(1135,100,400,700);
 		frame.getContentPane().add(advertisement);
 		
-		login.addActionListener(new ActionListener()
-		{
-		    public void actionPerformed(ActionEvent ae) 
-		    {
-				try 
-				{
-					HotelSearch hotel = new HotelSearch();
-					hotel.gui();
-				}
-				catch (IOException e) 
-				{	
-					e.printStackTrace();
-				}
-		    }
-		 });
-		
 		Random random = new Random();
 	      int randomInteger = random.nextInt(5)+1;
 	      System.out.println(randomInteger);
@@ -137,7 +121,33 @@ class Login
 				
 			});
 
-	      
+	      login.addActionListener(new ActionListener()
+			{
+		       public void actionPerformed(ActionEvent ae)
+		       {
+		    	  
+	              String s1 = userName.getText();
+	              char[] s2 = password.getPassword();
+	              
+	              if(false) 
+	              {
+	            	  JLabel ha = new JLabel("Re-enter username/password");
+	            	  ha.setBounds(700,580,100,50);
+	            	  frame.add(ha);
+	              }
+	              else
+	              {
+	            	  
+	            	  HotelSearch hs =new HotelSearch();
+	            	  try {
+						hs.gui();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	              }
+		    	}
+	     });
 	     
         frame.revalidate();
 		frame.repaint();
