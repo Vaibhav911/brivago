@@ -107,13 +107,21 @@ class BookingConfirmation
 		frame.getContentPane().add(jp);
 		
 		book_button=new JButton("Confirm Booking");
-		book_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				//jl.setText("Button One Pressed");
-			}
-		});
 		book_button.setBounds(360,540,160,32);
 		frame.getContentPane().add(book_button);
+		book_button.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					try {
+				         Verification v = new Verification();
+						v.gui();
+					}
+					catch(Exception e1)
+					{
+						e1.printStackTrace();
+					}
+				  }
+				
+			});
 
 		/**/
 		frame.revalidate();
