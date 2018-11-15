@@ -3,6 +3,8 @@ package brivago;
 import javax.swing.*;
 import javax.imageio.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 class Profile
@@ -56,58 +58,59 @@ class Profile
 		nameLabel.setFont(font2);
 		frame.getContentPane().add(nameLabel);
 		
-		JTextField name = new JTextField(1000);
-		name.setBounds(600,200,300,30);
-		frame.getContentPane().add(name);
-		name.setText("Ashish");
+		JLabel namefield = new JLabel("Brivago");
+		namefield.setBounds(600,200,158,30);
+		namefield.setFont(font2);
+		frame.getContentPane().add(namefield);
 		
 		JLabel dateOfBirthLabel = new JLabel("Date of Birth");
 		dateOfBirthLabel.setBounds(360,270,158,30);
 		dateOfBirthLabel.setFont(font2);
 		frame.getContentPane().add(dateOfBirthLabel);
 		
-		JTextField dateOfBirth = new JTextField(1000);
-		dateOfBirth.setBounds(600,270,300,30);
-		frame.getContentPane().add(dateOfBirth);
-		dateOfBirth.setText("02/01/1999");
+		JLabel datefield = new JLabel("Brivago");
+		datefield.setBounds(600,270,300,30);
+		datefield.setFont(font2);
+		frame.getContentPane().add(datefield);
 		
-		JLabel residentialAddressLabel = new JLabel("Residential Address");
-		residentialAddressLabel.setBounds(360,340,240,30);
-		residentialAddressLabel.setFont(font2);
-		frame.getContentPane().add(residentialAddressLabel);
+		JLabel userNameLabel = new JLabel("User Name");
+		userNameLabel.setBounds(360,340,240,30);
+		userNameLabel.setFont(font2);
+		frame.getContentPane().add(userNameLabel);
 		
-		JTextField residentialAddress = new JTextField(1000);
-		residentialAddress.setBounds(600,340,300,30);
-		frame.getContentPane().add(residentialAddress);
-		residentialAddress.setText("Address");
+		JLabel userNamefield = new JLabel("User XYZ");
+		userNamefield.setBounds(600,340,300,30);
+		userNamefield.setFont(font2);
+		frame.getContentPane().add(userNamefield);
 		
 		JLabel emailIdLabel = new JLabel("Email ID ");
 		emailIdLabel.setBounds(360,410,158,30);
 		emailIdLabel.setFont(font2);
 		frame.getContentPane().add(emailIdLabel);
 		
-		JTextField emailId = new JTextField(1000);
-		emailId.setBounds(600,410,300,30);
-		frame.getContentPane().add(emailId);
-		emailId.setText("example@example.com");
-		
-		JLabel userNameLabel = new JLabel("User Name");
-		userNameLabel.setBounds(360,480,158,30);
-		userNameLabel.setFont(font2);
-		frame.getContentPane().add(userNameLabel);
-		
-		JTextField userName = new JTextField(1000);
-		userName.setBounds(600,480,300,30);
-		frame.getContentPane().add(userName);
-		userName.setText("Ashish0201");
-		
+		JLabel emailIdfield = new JLabel("Brivago");
+		emailIdfield.setBounds(600,410,300,30);
+		emailIdfield.setFont(font2);
+		frame.getContentPane().add(emailIdfield);
+	
 		JButton changePassword = new JButton("Change Password");
-		changePassword.setBounds(450,570,140,50);
+		changePassword.setBounds(600,500,140,50);
 		frame.getContentPane().add(changePassword);
-	    
-		JButton register = new JButton("Save");
-		register.setBounds(650,570,140,50);
-		frame.getContentPane().add(register);
+		
+		 changePassword.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					try {
+						ChangePassword cp = new ChangePassword();
+						cp.gui();
+					}
+					catch(Exception e1)
+					{
+						e1.printStackTrace();
+					}
+				  }
+				
+			});
+
 		
 		frame.revalidate();
 		frame.repaint();
