@@ -171,38 +171,47 @@ class Registration
 				  }
 				
 			});
-
-
-		
-		register.addActionListener(new ActionListener()
-		{
-		    public void actionPerformed(ActionEvent ae) 
-		    {
-		    	String s1 = name.getText();
-		    	String s2 = dateOfBirth.getText();
-		    	String s3 = residentialAddress.getText();
-		    	String s4 = emailId.getText();
-		    	String s5 = userName.getText();
-		    	char[] s6 = password.getPassword();
-		    	char[] s7 = confirmPassword.getPassword();
+	      
+	      register.addActionListener(new ActionListener()
+			{
+		       public void actionPerformed(ActionEvent ae)
+		       {
+		    	   String s1 = name.getText();
+		    	   String s2 =dateOfBirth.getText();
+		    	   String s3 = emailId.getText();
+		    	   String s4 = userName.getText();
+		    	   char[] s5 = confirmPassword.getPassword();
+			   	   char[] s6 = password.getPassword();
+			   		  int k=0;
+			   		 if(s5.length!=s6.length) {
+			              System.out.print("ha");k=1;}
+			   		 else 
+			   		 {
+			   			 for(int i=0;i<s6.length;i++)
+			   				if(s5[i]!=s6[i]) {
+			   					 k=1;break;
+			   				}
+			   		}
+		    	 
+			   		 if(k==0)
+			   		 {
+			   			 LoginTemp lt=new LoginTemp();
+			   			 try {
+							lt.gui();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+			   		 }
+			   		 else
+			   		 {
+			   			JLabel l = new JLabel("re-enter password");
+			   			l.setBounds(600,600,150,50);
+			   			frame.add(l);
+			   		 }
 		    	
-		    	for(int i=0;i<s6.length;i++)
-		    	{
-		    		if(!(Arrays.equals(password.getPassword(), confirmPassword.getPassword())))
-		    	   {
-		    			
-		    			
-		    			JLabel ha = new JLabel("Re-enter password");
-		    			ha.setBounds(300,600,100,50);
-		    			frame.add(ha);
-		    			
-		    		}
-		    	}
-		    	
-		      
-			}
-		    
-		 });
+		       }
+		  });
 		
     frame.revalidate();
 		frame.repaint(); 
