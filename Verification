@@ -1,9 +1,12 @@
+package brivago;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.imageio.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.URL;
+import java.util.Random;
 class Verification
 {
 	JPanel jp;
@@ -28,18 +31,31 @@ class Verification
 		ImageIcon brivagoicon = new ImageIcon("brivagoicon.jpg");//settin app icon
 		frame.setIconImage(brivagoicon.getImage());
 	
-		JButton profile = new JButton("profile");//profile button setup
-		profile.setBounds(1200,10,77,30);
+		JButton profile = new JButton("Profile");//profile button setup
+		profile.setBounds(1405,10,77,30);
+		profile.addActionListener(new ProfileListener());
 		frame.getContentPane().add(profile);
 
 		JButton logout = new JButton();//logout button setup
-		logout.setBounds(1296, 10, 30,30);
+		logout.setBounds(1495, 10, 30,30);
+		logout.addActionListener(new LogoutListener());
 		frame.getContentPane().add(logout);
 		ImageIcon image = new ImageIcon("power.jpg");
 		logout.setIcon(image);
+		
+		JButton home = new JButton("Home");//profile button setup
+		home.addActionListener(new HomeListener());
+		home.setBounds(10,10,80,32);
+		frame.getContentPane().add(home);		
+		
+		JButton advertisement= new JButton() ;
+		advertisement.setBounds(1135,100,400,700);
+		frame.getContentPane().add(advertisement);
+
 
 		JButton mybook = new JButton("My Bookings");//mybooking button setup
-		mybook.setBounds(1072,10, 108, 30);
+		mybook.setBounds(1285,10, 108, 30);
+		mybook.addActionListener(new BookingListener());
 		frame.getContentPane().add(mybook);
 		/**/
 		jl1=new JLabel("Total Price --");
@@ -62,28 +78,88 @@ class Verification
 		frame.getContentPane().add(price);
 		frame.getContentPane().add(aadhar);
 		
-		finalise_button=new JButton("Finalise");
-		finalise_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				//jl.setText("Button One Pressed");
-			}
+		Random random = new Random();
+	      int randomInteger = random.nextInt(5)+1;
+	      System.out.println(randomInteger);
+	     String link = null;
+	      switch(randomInteger)
+	      {
+	          case 1:
+	        	  ImageIcon image1=new  ImageIcon("add1.png"); 
+	              advertisement.setIcon(image1);
+	              link ="https://www.firstpost.com/shows/9-months/9-months-season-3-toddler-schooling-part-2-5394261.html";
+	              break;
+	          case 2:
+	        	  ImageIcon image2=new  ImageIcon("add2.png"); 
+	              advertisement.setIcon(image2);
+	              link =" https://www.upwardly.in/en/sip-calculator?utm_source=Display&utm_medium=adwordsbanner&utm_campaign=SipCalculatorDisplayInMkt&gclid=EAIaIQobChMIwMjMi_3L3gIVhRZoCh3gQwxrEAEYASAAEgJ-8_D_BwE";
+	              break;
+	          case 3:
+	        	  ImageIcon image3=new  ImageIcon("add3.png"); 
+	              advertisement.setIcon(image3);
+	              link ="https://practice.geeksforgeeks.org/courses/fork-cpp";
+	              break;
+	          case 4:
+	        	  ImageIcon image4=new  ImageIcon("add4.png"); 
+	              advertisement.setIcon(image4);
+	              link ="https://www.amazon.in/Kindle-Paperwhite-Resolution-Display-Built/dp/B00QJDOEAO?_encoding=UTF8&*Version*=1&*entries*=0&portal-device-attributes=desktop&ref_=kindle_ams_gw_pc";
+	              break;
+	          case 5:
+	        	  ImageIcon image5=new  ImageIcon("add5.png"); 
+	              advertisement.setIcon(image5);
+	              link =" http://events.computing.co.uk/itlfskytap";
+	              break;
+		
+	     }
+	      
+        final String finalLink = link;
+	      
+	      advertisement.addActionListener(new ActionListener()
+	      {
+				public void actionPerformed(ActionEvent e)
+				{
+					try 
+					{
+						openWebpage(finalLink);
+					}
+					catch(Exception se)
+					{               
+						se.printStackTrace();
+					}
+				}
+				public void openWebpage(String urlString) 
+				{
+				     try
+				     {
+				          Desktop.getDesktop().browse(new URL(urlString).toURI());
+				     } 
+				     catch (Exception e) 
+				     {
+				    	  e.printStackTrace();
+				     }
+			   }
+				
 		});
+
+		finalise_button=new JButton("Proceed");
 		finalise_button.setBounds(360,320,160,32);
 		frame.getContentPane().add(finalise_button);
-		
-		back_button=new JButton("Back");                         //Back Button
-		back_button.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e){
-				//jl.setText("Button One Pressed");
-			}
-		});
-		back_button.setBounds(0,0,80,32);
-		frame.getContentPane().add(back_button);
-		
+		finalise_button.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					try {
+						 BookingConfirmed bc = new BookingConfirmed();
+						bc.gui();
+					}
+					catch(Exception e1)
+					{
+						e1.printStackTrace();
+					}
+				  }
+				
+			});
+
 		/**/
 		frame.revalidate();
 		frame.repaint();
 	}
 }
-
-
