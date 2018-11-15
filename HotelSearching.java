@@ -1,5 +1,10 @@
+package brivago;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Random;
+
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.event.*;
@@ -198,98 +203,189 @@ public void changedUpdate(DocumentEvent e) {}
 
 class HotelSearch 
 {
-	HotelSearch()
+	
+	public static void main(String args[]) throws IOException
 	{
-		JFrame jf=new JFrame("Brivago");
-		jf.setSize(1920,1080);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.setVisible(true);
-		jf.setContentPane(new JLabel(new ImageIcon("beach.jpg")));
-		jf.setLayout(null);
+		HotelSearch hotel =new HotelSearch();
+		hotel.gui();
+	}
+	
+	public void gui() throws IOException
+	{
+		JFrame frame=new JFrame("Brivago");
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setSize(1920,1080);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.setContentPane(new JLabel(new ImageIcon("beach.jpg")));
+		frame.setLayout(null);
 		
 		Font font =new Font("serif",Font.BOLD,18);   //Initialize Font of all the text
 		
 		//Making Labels and setting font for all the required fields
-		JLabel jl1=new JLabel("Location");
-		jl1.setBounds(400,140,300,150);
-		jl1.setFont(font);
-		jf.add(jl1);
+		JLabel locationLabel=new JLabel("Location");
+		locationLabel.setBounds(400,140,300,150);
+		locationLabel.setFont(font);
+		frame.add(locationLabel);
 		
-		JLabel jl2=new JLabel("Check-In Date");
-		jl2.setBounds(400,220,300,150);
-		jl2.setFont(font);
-		jf.add(jl2);
+		JLabel checkInDateLabel=new JLabel("Check-In Date");
+		checkInDateLabel.setBounds(400,200,300,150);
+		checkInDateLabel.setFont(font);
+		frame.add(checkInDateLabel);
 
-		JLabel jl3=new JLabel("Check-Out Date");
-		jl3.setBounds(400,300,300,150);
-		jl3.setFont(font);
-		jf.add(jl3);
+		JLabel checkOutDateLabel=new JLabel("Check-Out Date");
+		checkOutDateLabel.setBounds(400,260,300,150);
+		checkOutDateLabel.setFont(font);
+		frame.add(checkOutDateLabel);
 
-		JLabel jl4=new JLabel("Number of Rooms");
-		jl4.setBounds(400,380,300,150);
-		jl4.setFont(font);
-		jf.add(jl4);
-
-		JLabel jl5=new JLabel("Number of Guests");
-		jl5.setBounds(400,460,300,150);
-		jl5.setFont(font);
-		jf.add(jl5);
+		JLabel singleRoomLabel=new JLabel("Number of Single Rooms");
+		singleRoomLabel.setBounds(400,320,300,150);
+		singleRoomLabel.setFont(font);
+		frame.add(singleRoomLabel);
+		
+		JLabel doubleRoomLabel=new JLabel("Number of Double Rooms");
+		doubleRoomLabel.setBounds(400,380,300,150);
+		doubleRoomLabel.setFont(font);
+		frame.add(doubleRoomLabel);
+		
+		JLabel guestLabel=new JLabel("Number of Guests");
+		guestLabel.setBounds(400,440,300,150);
+		guestLabel.setFont(font);
+		frame.add(guestLabel);
 		
 		//A button for searching Hotels
-		JButton jb=new JButton("Search Hotels");
-		jb.setBounds(600,620,120,50);
-		jf.add(jb);
+		JButton hotelSearch =new JButton("Search Hotels");
+		hotelSearch.setBounds(600,620,120,50);
+		frame.add(hotelSearch);
 		
 		//Text fields for their respective Labels
-		JTextField jtf1=new JTextField(25);
-		jtf1.setBounds(600,205,150,25);		
-		TextPrompt tp1=new TextPrompt("eg. Jaipur",jtf1);
+		JTextField location=new JTextField(25);
+		location.setBounds(630,205,150,25);		
+		TextPrompt tp1=new TextPrompt("eg. Jaipur",location);
 		tp1.setForeground(Color.GRAY);
-		jf.add(jtf1);
+		frame.add(location);
 		
-		JTextField jtf2=new JTextField(25);
-		jtf2.setBounds(600,285,150,25);
-		TextPrompt tp2=new TextPrompt("DD/MM/YYYY",jtf2);
+		JTextField checkInDate=new JTextField(25);
+		checkInDate.setBounds(630,265,150,25);
+		TextPrompt tp2=new TextPrompt("DD/MM/YYYY",checkInDate);
 		tp2.setForeground(Color.GRAY);
-		jf.add(jtf2);
+		frame.add(checkInDate);
 		
-		JTextField jtf3=new JTextField(25);
-		jtf3.setBounds(600,365,150,25);
-		TextPrompt tp3=new TextPrompt("DD/MM/YYYY",jtf3);
+		JTextField checkOutDate=new JTextField(25);
+		checkOutDate.setBounds(630,325,150,25);
+		TextPrompt tp3=new TextPrompt("DD/MM/YYYY",checkOutDate);
 		tp3.setForeground(Color.GRAY);
-		jf.add(jtf3);
+		frame.add(checkOutDate);
 		
-		JTextField jtf4=new JTextField(25);
-		jtf4.setBounds(600,445,150,25);
-		jf.add(jtf4);
+		JTextField singleRoom=new JTextField(25);
+		singleRoom.setBounds(630,385,150,25);
+		frame.add(singleRoom);
 		
-		JTextField jtf5=new JTextField(25);
-		jtf5.setBounds(600,525,150,25);
-		jf.add(jtf5);
+		JTextField doubleRoom=new JTextField(25);
+		doubleRoom.setBounds(630,445,150,25);
+		frame.add(doubleRoom);
+		
+		JTextField guests=new JTextField(25);
+		guests.setBounds(630,505,150,25);
+		frame.add(guests);
 		
 		//Adding default images and icons to the Template
 		ImageIcon brivagoicon = new ImageIcon("brivagoicon.jpg");
-		jf.setIconImage(brivagoicon.getImage());
+		frame.setIconImage(brivagoicon.getImage());
 		
 		JButton profile = new JButton("Profile");//profile button setup
+		profile.addActionListener(new ProfileListener());
 		profile.setBounds(1405,10,77,30);
-		jf.getContentPane().add(profile);
+		frame.getContentPane().add(profile);
 
 		JButton logout = new JButton();//logout button setup
 		logout.setBounds(1495, 10, 30,30);
-		jf.getContentPane().add(logout);
+		logout.addActionListener(new LogoutListener());
+		frame.getContentPane().add(logout);
 		ImageIcon image = new ImageIcon("power.jpg");
 		logout.setIcon(image);
 
 		JButton mybook = new JButton("My Bookings");//mybooking button setup
+		mybook.addActionListener(new BookingListener());
 		mybook.setBounds(1285,10, 108, 30);
-		jf.getContentPane().add(mybook);
+		frame.getContentPane().add(mybook);
 		
-		jf.revalidate();
-		jf.repaint();	
-	}
-	public static void main(String[] args)
-	{
-		SwingUtilities.invokeLater(new Runnable() {public void run() {new HotelSearch();}});	
+		JButton advertisement= new JButton() ;
+		advertisement.setBounds(1135,100,400,700);
+		frame.getContentPane().add(advertisement);
+		
+		Random random = new Random();
+	    int randomInteger = random.nextInt(5)+1;
+	    System.out.println(randomInteger);
+	      
+	    String link = null;
+	      switch(randomInteger)
+	      {
+	          case 1:
+	        	  ImageIcon image1=new  ImageIcon("add1.png"); 
+	              advertisement.setIcon(image1);
+	              link ="https://www.firstpost.com/shows/9-months/9-months-season-3-toddler-schooling-part-2-5394261.html";
+	              break;
+	          case 2:
+	        	  ImageIcon image2=new  ImageIcon("add2.png"); 
+	              advertisement.setIcon(image2);
+	              link =" https://www.upwardly.in/en/sip-calculator?utm_source=Display&utm_medium=adwordsbanner&utm_campaign=SipCalculatorDisplayInMkt&gclid=EAIaIQobChMIwMjMi_3L3gIVhRZoCh3gQwxrEAEYASAAEgJ-8_D_BwE";
+	              break;
+	          case 3:
+	        	  ImageIcon image3=new  ImageIcon("add3.png"); 
+	              advertisement.setIcon(image3);
+	              link ="https://practice.geeksforgeeks.org/courses/fork-cpp";
+	              break;
+	          case 4:
+	        	  ImageIcon image4=new  ImageIcon("add4.png"); 
+	              advertisement.setIcon(image4);
+	              link ="https://www.amazon.in/Kindle-Paperwhite-Resolution-Display-Built/dp/B00QJDOEAO?_encoding=UTF8&*Version*=1&*entries*=0&portal-device-attributes=desktop&ref_=kindle_ams_gw_pc";
+	              break;
+	          case 5:
+	        	  ImageIcon image5=new  ImageIcon("add5.png"); 
+	              advertisement.setIcon(image5);
+	              link =" http://events.computing.co.uk/itlfskytap";
+	              break;
+		
+	     }
+	      
+      final String finalLink = link;
+	      
+	      advertisement.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					try {
+						openWebpage(finalLink);
+					}
+					catch(Exception se)
+					{
+						se.printStackTrace();
+					}
+				}
+				public void openWebpage(String urlString) {
+				     try {
+				       Desktop.getDesktop().browse(new URL(urlString).toURI());
+				    	  } catch (Exception e) {
+				    	        e.printStackTrace();
+				    	    }
+				  }
+				
+			});
+	      
+	      hotelSearch.addActionListener(new ActionListener(){
+				public void actionPerformed(ActionEvent e){
+					try {
+						HotelDisplay hd = new HotelDisplay();
+						hd.gui();
+					}
+					catch(Exception e1)
+					{
+						e1.printStackTrace();
+					}
+				  }
+				
+			});
+
+		frame.revalidate();
+		frame.repaint();	
 	}
 }
