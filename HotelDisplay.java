@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 class HotelDisplay
 {
 	JFrame frame;
@@ -17,6 +18,22 @@ class HotelDisplay
 		HotelDisplay basetemplate = new HotelDisplay();
 		basetemplate.gui();
 	}
+	ArrayList<String> hotelName = new ArrayList<String>();
+	ArrayList<String> landmark = new ArrayList<String>();
+	ArrayList<String> cityName = new ArrayList<String>();
+	ArrayList<Boolean> wifi = new ArrayList<Boolean>();
+	ArrayList<Boolean> parking = new ArrayList<Boolean>();
+	ArrayList<Boolean> restuarant = new ArrayList<Boolean>();
+	ArrayList<Boolean> ac = new ArrayList<Boolean>();
+	ArrayList<Boolean> compBreakfast = new ArrayList<Boolean>();
+	ArrayList<Integer> price1 = new ArrayList<Integer>(); 
+	ArrayList<Integer> price2 = new ArrayList<Integer>();
+	ArrayList<Integer> numberOf1Rooms = new ArrayList<Integer>();
+	ArrayList<Integer> numberOf2Rooms = new ArrayList<Integer>();
+	ArrayList<Float> rating = new ArrayList<Float>();
+	BookingConfirmation bc;
+	int numberOf1Room, numberOf2Room;
+	String checkInDate, checkOutDate;
 	public void gui() throws IOException
 	{
 	    frame = new JFrame("Brivago");//setting background image
@@ -47,7 +64,10 @@ class HotelDisplay
 		mybook.addActionListener(new BookingListener());
 		frame.getContentPane().add(mybook);
 		
-		JLabel heading = new JLabel("Jaipur - Hotels");
+		//for loop starting here---------------------
+		for(int i=1;i<3;i++) {
+			
+		JLabel heading = new JLabel(cityName.get(i));
 		heading.setBounds(550,100,300,60);
 		Font font = new Font("serif",Font.BOLD + Font.ITALIC,40);
 		heading.setFont(font); 
@@ -55,57 +75,89 @@ class HotelDisplay
 		frame.add(heading);
 		
 		JPanel panel1=new JPanel();  
-        panel1.setBounds(240,200,840,180);
+        panel1.setBounds(240,200*(i),840,180);
         panel1.setLayout(null);
-
-        JLabel hotelName1 = new JLabel("Trident");
-		hotelName1.setBounds(300,200,300,60);
+        //String temp = cityName.get(0);
+        //System.out.println(temp);
+        JLabel hotelName1 = new JLabel(hotelName.get(i));
+		hotelName1.setBounds(300,200*(i),300,60);
 		Font font1 = new Font("serif",Font.BOLD,50);
 		hotelName1.setFont(font1); 
 		hotelName1.setForeground(Color.BLUE);
 		
 		JLabel hotel1 = new JLabel("5 star - Hotel");
-		hotel1.setBounds(300,250,300,60);
+		hotel1.setBounds(300,250+200*(i-1),300,60);
 		Font font2 = new Font("serif",Font.BOLD,20);
 		hotel1.setFont(font2); 
 		
-		JLabel city1 = new JLabel("Jaipur, Rajasthan, India");
-		city1.setBounds(300,280,300,60);
+		JLabel city1 = new JLabel(cityName.get(i));
+		city1.setBounds(300,280+200*(i-1),300,60);
 		city1.setFont(font2); 
 		
-		JLabel rating1 = new JLabel("8.9");
-		rating1.setBounds(300,320,300,60);
+		JLabel rating1 = new JLabel(Float.toString(rating.get(i)));
+		rating1.setBounds(300,320+200*(i-1),300,60);
 		rating1.setFont(font2); 
 		rating1.setForeground(Color.YELLOW);
 		
-		JLabel price1 = new JLabel("Rs. 8000");
-		price1.setBounds(800,200,300,60);
+		JLabel price = new JLabel(Integer.toString(price1.get(i)));
+		price.setBounds(800,200+200*(i-1),300,60);
 		Font font3 = new Font("serif",Font.BOLD,40);
-		price1.setFont(font3); 
-		price1.setForeground(Color.RED);
+		price.setFont(font3); 
+		price.setForeground(Color.RED);
 		
 		JLabel temp = new JLabel("Per Night");
-		temp.setBounds(800,240,300,60);
+		temp.setBounds(800,240+200*(i-1),300,60);
 		temp.setFont(font2); 
 		
 		JButton view1 = new JButton("View Details");//mybooking button setup
 		Font font4=new Font("serif",Font.BOLD,20); 
-		view1.setBounds(800,320,200,40);
+		view1.setBounds(800,320+200*(i-1),200,40);
 		view1.setBackground(Color.CYAN);
 		view1.setFont(font4);
 		frame.add(view1);
+		final int j = i;
+		view1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				try {
+				HotelView hv=new HotelView();
+				//hv.hd = basetemplate;
+				hv.numberOf1Room = numberOf1Room;
+				hv.numberOf2Room = numberOf2Room;
+				hv.bc = bc;
+				hv.hotelName1 = hotelName.get(j);
+				hv.cityName1 = cityName.get(j);
+				hv.landmark1 = landmark.get(j);
+				hv.wifi1 = wifi.get(j);
+				hv.parking1 = parking.get(j);
+				hv.restuarant1 = restuarant.get(j);
+				hv.ac1 = ac.get(j);
+				hv.compBreakfast1 = compBreakfast.get(j);
+				hv.price11 = price1.get(j);
+				hv.price21 = price2.get(j);
+				hv.checkInDate = checkInDate;
+				hv.checkOutDate = checkOutDate;
+				
+				hv.gui();}
+				catch(Exception e1)
+				{
+					e1.printStackTrace();
+				}
+			  }
+		});
+        
 		
 		frame.add(hotelName1);	
 		frame.add(hotel1);
 		frame.add(city1);
 		frame.add(rating1);
-		frame.add(price1);
+		frame.add(price);
 		frame.add(temp);
         panel1.setBackground(new Color(0,60,0,60));
         panel1.setBorder(BorderFactory.createLineBorder(Color.BLACK,4));
         frame.add(panel1);
+		}
         
-        JPanel panel2=new JPanel();  
+        /*JPanel panel2=new JPanel();  
         panel2.setBounds(240,400,840,180);  
         panel2.setLayout(null);
         
@@ -210,7 +262,7 @@ class HotelDisplay
         frame.add(panel5);
        */
         
-        view1.addActionListener(new ActionListener(){
+      /*  view1.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				try {
 				HotelView hv=new HotelView();
@@ -247,7 +299,7 @@ class HotelDisplay
 				}
 			  }
 			
-		});
+		});*/
 		frame.revalidate();
 		frame.repaint();
 	}
